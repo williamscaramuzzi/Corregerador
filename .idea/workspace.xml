@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f8b47da-c875-414f-a497-b0958c6b2bdc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Corregerador.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dados_unidade.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gerenciador_atd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gerenciador_ipm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manipulacoes_atd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manipulacoes_ipm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/A - Capa.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/B - Autuacao.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/C - Portaria do encarregado.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/D - Designacao escrivao.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/E - Termo de compromisso.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/F - Despacho 001.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/G - Recebimento.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/G.1 - Of 001 informando designacao.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/G.2 - Oitiva investigado.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/V - Conclusao.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/W - Relatorio.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/X - Termo de remessa.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/Y - Of de remessa.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utilidades.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2o7BEqZFJlWDe9macTYQ0jH7oxB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Run Corregerador.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/willi/PycharmProjects/Corregerador"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\willi\PycharmProjects\Corregerador" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run Corregerador" type="PythonConfigurationType" factoryName="Python">
+      <module name="Corregerador" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11 (Corregerador)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f8b47da-c875-414f-a497-b0958c6b2bdc" name="Changes" comment="" />
+      <created>1730210624565</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730210624565</updated>
+    </task>
+    <servers />
+  </component>
+</project>

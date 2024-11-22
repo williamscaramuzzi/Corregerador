@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f8b47da-c875-414f-a497-b0958c6b2bdc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gerenciador_atd.py" beforeDir="false" afterPath="$PROJECT_DIR$/gerenciador_atd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gerenciador_ipm.py" beforeDir="false" afterPath="$PROJECT_DIR$/gerenciador_ipm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manipulacoes_atd.py" beforeDir="false" afterPath="$PROJECT_DIR$/manipulacoes_atd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manipulacoes_ipm.py" beforeDir="false" afterPath="$PROJECT_DIR$/manipulacoes_ipm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/A - Capa.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/B - Autuacao.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/C - Portaria do encarregado.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/D - Designacao escrivao.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/E - Termo de compromisso.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/F - Despacho 001.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/G - Recebimento.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/G.1 - Of 001 informando designacao.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/G.2 - Oitiva investigado.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/V - Conclusao.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/W - Relatorio.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/X - Termo de remessa.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Y - Of de remessa.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,18 +39,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "williamscaramuzzi"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;williamscaramuzzi&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/williamscaramuzzi/Corregerador.git",
-    "accountId": "d30411c2-62bc-4583-ad41-de3eccde980c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/williamscaramuzzi/Corregerador.git&quot;,
+    &quot;accountId&quot;: &quot;d30411c2-62bc-4583-ad41-de3eccde980c&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -44,17 +60,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Python.Run Corregerador.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/willi/PycharmProjects/Corregerador"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Python.Run Corregerador.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/willi/PycharmProjects/Corregerador&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\willi\PycharmProjects\Corregerador" />

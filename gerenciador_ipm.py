@@ -36,10 +36,11 @@ def main():
             "uopm_email": uopm_email_var.get()}
 
         string_num_portaria = str(num_portaria_var.get()) + "/IPM/CORREG/PMMS/" + data_portaria_var.get()[-4:]
+        string_data_portaria = utilidades.get_data_semi_extenso(data_portaria_var.get())
         string_data_autuacao = utilidades.get_data_semi_extenso(data_autuacao_var.get())
         string_data_relatorio = utilidades.get_data_semi_extenso(data_relatorio)
 
-        dados_ipm_dict = {"num_portaria": string_num_portaria, "data_portaria": data_portaria_var.get(),
+        dados_ipm_dict = {"num_portaria": string_num_portaria, "data_portaria": string_data_portaria,
             "nome_encarregado": nome_encarregado_var.get(), "posto_encarregado": posto_encarregado_var.get(),
             "mat_encarregado": mat_encarregado_var.get(), "postograd_investigado": postograd_investigado_var.get(),
             "nome_investigado": nome_investigado_var.get(), "mat_investigado": mat_investigado_var.get(),
@@ -333,13 +334,22 @@ def main():
     label_texto_finalidade = tk.Label(maingrid, text="Texto da Finalidade")
     label_texto_finalidade.grid(row=15, column=0, sticky="e")
 
+    # Configurar o peso das colunas (para redimensionar proporcionalmente)
+    for col in range(8):  # Número de colunas
+        maingrid.columnconfigure(col, weight=1)
+    maingrid.rowconfigure(15, weight=1)  # Permitir expansão para a linha do Text
+
     texto_finalidade_var = tk.StringVar()
-    textinput_texto_finalidade = tk.Entry(maingrid, width=50, textvariable=texto_finalidade_var)
-    textinput_texto_finalidade.grid(row=15, column=1, sticky="w", padx=(0, 25))
+    textinput_texto_finalidade = tk.Text(maingrid, wrap="word")
+    textinput_texto_finalidade.grid(row=15, column=1, columnspan=4, sticky="ew", padx=10, pady=10)
+    # Adicionar barra de rolagem
+    scrollbar = tk.Scrollbar(maingrid, command=textinput_texto_finalidade.yview)
+    scrollbar.grid(row=9, column=5, sticky="nsw")  # Posicionada ao lado do `Text`
+    textinput_texto_finalidade.configure(yscrollcommand=scrollbar.set)
 
     # Linha 16 - botão executar GERAR IPM
     button_executar = tk.Button(maingrid, text="Gerar IPM", command=button_executar_onclick)
-    button_executar.grid(row=16, column=0)
+    button_executar.grid(row=16, column=0, columnspan=2, sticky="nsew", padx=10, pady=10)
 
     # Chamando função que confere se o arquivo "dados_unidade.json" existe:
     dados_unidade_dict = confere_dados_unidade()

@@ -30,7 +30,7 @@ def criar_pasta_saida(num_portaria_completo: str) -> str:
 
 
 def processar_capa(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/A - Capa.docx")
+    documento = DocxTemplate("templates/ipm/A - Capa.docx")
     dados = {
         "uopm": obj["uopm"],
         "num_portaria": obj["num_portaria"],
@@ -51,7 +51,7 @@ def processar_capa(obj: Dict[str, str]) -> None:
 
 
 def processar_autuacao(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/B - Autuacao.docx")
+    documento = DocxTemplate("templates/ipm/B - Autuacao.docx")
     dados = {
         "num_portaria": obj["num_portaria"],
         "data_portaria": obj["data_portaria"],
@@ -81,7 +81,7 @@ def processar_autuacao(obj: Dict[str, str]) -> None:
 
 
 def processar_portaria_encarregado(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\C - Portaria do encarregado.docx")
+    documento = DocxTemplate("templates/ipm/C - Portaria do encarregado.docx")
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -110,7 +110,7 @@ def processar_portaria_encarregado(obj: Dict[str, str]) -> None:
 
 
 def processar_designacao(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\D - Designacao escrivao.docx")
+    documento = DocxTemplate("templates/ipm/D - Designacao escrivao.docx")
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -137,7 +137,7 @@ def processar_designacao(obj: Dict[str, str]) -> None:
 
 
 def processar_termo_compromisso(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\E - Termo de compromisso.docx")
+    documento = DocxTemplate("templates/ipm/E - Termo de compromisso.docx")
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -167,7 +167,7 @@ def processar_termo_compromisso(obj: Dict[str, str]) -> None:
 
 
 def processar_despacho(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\F - Despacho 001.docx")
+    documento = DocxTemplate("templates/ipm/F - Despacho 001.docx")
     dados = {
         "num_portaria": obj["num_portaria"],
         "data_portaria": obj["data_portaria"],
@@ -192,7 +192,7 @@ def processar_despacho(obj: Dict[str, str]) -> None:
 
 
 def processar_recebimento(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\G - Recebimento.docx")
+    documento = DocxTemplate("templates/ipm/G - Recebimento.docx")
     dados = {
         "grande_comando": obj["grande_comando"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -214,7 +214,7 @@ def processar_recebimento(obj: Dict[str, str]) -> None:
 
 
 def processar_oficio_001(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\G.1 - Of 001 informando designacao.docx")
+    documento = DocxTemplate("templates/ipm/G.1 - Of 001 informando designacao.docx")
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -242,7 +242,7 @@ def processar_oficio_001(obj: Dict[str, str]) -> None:
 
 
 def processar_oitiva_investigado(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\G.2 - Oitiva investigado.docx")
+    documento = DocxTemplate("templates/ipm/G.2 - Oitiva investigado.docx")
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -272,7 +272,7 @@ def processar_oitiva_investigado(obj: Dict[str, str]) -> None:
 
 
 def processar_conclusao(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\V - Conclusao.docx")
+    documento = DocxTemplate("templates/ipm/V - Conclusao.docx")
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -294,7 +294,7 @@ def processar_conclusao(obj: Dict[str, str]) -> None:
 
 
 def processar_relatorio(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\W - Relatorio.docx")
+    documento = DocxTemplate("templates/ipm/W - Relatorio.docx")
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -325,7 +325,7 @@ def processar_relatorio(obj: Dict[str, str]) -> None:
 
 
 def processar_termo_remessa(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\X - Termo de remessa.docx")
+    documento = DocxTemplate("templates/ipm/X - Termo de remessa.docx")
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -350,7 +350,7 @@ def processar_termo_remessa(obj: Dict[str, str]) -> None:
 
 
 def processar_oficio_remessa(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates\Y - Of de remessa.docx")
+    documento = DocxTemplate("templates/ipm/Y - Of de remessa.docx")
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],

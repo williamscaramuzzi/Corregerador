@@ -1,3 +1,7 @@
+# Comando para buildar esse projeto corretamente com pyinstaller
+# pyinstaller --onefile --windowed --icon=assets/app.ico main.py
+# depois tenho que copiar a pasta assets, pasta templates, e arquivo JSON dados_unidade e jogar tudo no dist
+
 import tkinter as tk
 import gerenciador_ipm
 import gerenciador_atd
@@ -38,29 +42,31 @@ label1 = tk.Label(janela_inicial, text="Escolha qual processo deseja montar:")
 frame = tk.Frame(janela_inicial)
 
 # Criar e posicionar os botões no grid dentro do Frame
-icon_atd = tk.PhotoImage(file=r"icons\atd.png")
-button_atd = tk.Button(frame, text="ATD", image=icon_atd, compound="top", command=abrir_gerenciador_atd)
-button_atd.grid(row=0, column=0, padx=10, pady=10)
 
-icon_sindicancia = tk.PhotoImage(file="icons/sindicancia.png")
-button_sindicancia = tk.Button(frame, text="Sindicância", image=icon_sindicancia, compound="top")
-button_sindicancia.grid(row=0, column=1, padx=10, pady=10)
-
-icon_it = tk.PhotoImage(file="icons\it.png")
-button_it = tk.Button(frame, text="Inquérito Técnico", image=icon_it, compound="top")
-button_it.grid(row=0, column=2, padx=10, pady=10)
-
-icon_ipm = tk.PhotoImage(file="icons\ipm1.png")
+icon_ipm = tk.PhotoImage(file="assets\ipm1.png")
 button_ipm = tk.Button(frame, text="IPM", image=icon_ipm, compound="top", command=abrir_gerenciador_ipm)
-button_ipm.grid(row=1, column=0, padx=10, pady=10)
+button_ipm.grid(row=0, column=0, padx=10, pady=10)
 
-icon_cons_disciplina = tk.PhotoImage(file="icons\consdisciplina.png")
+icon_atd = tk.PhotoImage(file=r"assets\atd.png")
+button_atd = tk.Button(frame, text="ATD", image=icon_atd, compound="top", command=abrir_gerenciador_atd)
+button_atd.grid(row=0, column=1, padx=10, pady=10)
+
+icon_sindicancia = tk.PhotoImage(file="assets/sindicancia-cinza.png")
+button_sindicancia = tk.Button(frame, text="Sindicância", image=icon_sindicancia, compound="top", state="disabled")
+button_sindicancia.grid(row=0, column=2, padx=10, pady=10)
+
+icon_it = tk.PhotoImage(file="assets\it-cinza.png")
+button_it = tk.Button(frame, text="Inquérito Técnico", image=icon_it, compound="top", state="disabled")
+button_it.grid(row=1, column=0, padx=10, pady=10)
+
+
+icon_cons_disciplina = tk.PhotoImage(file="assets\consdisciplina-cinza.png")
 button_cons_disciplina = tk.Button(frame, text="Conselho de Disciplina",
-                                   image=icon_cons_disciplina, compound="top")
+                                   image=icon_cons_disciplina, compound="top", state="disabled")
 button_cons_disciplina.grid(row=1, column=1, padx=10, pady=10)
 
-icon_cons_especial = tk.PhotoImage(file="icons\consespecial.png")
-button_cons_especial = tk.Button(frame, text="Conselho Especial", image=icon_cons_especial, compound="top")
+icon_cons_especial = tk.PhotoImage(file="assets\consespecial-cinza.png")
+button_cons_especial = tk.Button(frame, text="Conselho Especial", image=icon_cons_especial, compound="top", state="disabled")
 button_cons_especial.grid(row=1, column=2, padx=10, pady=10)
 
 label1.pack(pady=20)

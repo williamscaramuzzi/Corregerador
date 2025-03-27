@@ -6,23 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0f8b47da-c875-414f-a497-b0958c6b2bdc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ATD Portaria n 99 2024/A - Capa.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ATD Portaria n 99 2024/B - Formulario.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ATD Portaria n 99 2024/W - Relatorio.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gerenciador_atd.py" beforeDir="false" afterPath="$PROJECT_DIR$/gerenciador_atd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gerenciador_ipm.py" beforeDir="false" afterPath="$PROJECT_DIR$/gerenciador_ipm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manipulacoes_atd.py" beforeDir="false" afterPath="$PROJECT_DIR$/manipulacoes_atd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manipulacoes_ipm.py" beforeDir="false" afterPath="$PROJECT_DIR$/manipulacoes_ipm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/A - Capa.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/B - Autuacao.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/C - Portaria do encarregado.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/D - Designacao escrivao.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/E - Termo de compromisso.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/F - Despacho 001.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/G - Recebimento.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/G.1 - Of 001 informando designacao.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/G.2 - Oitiva investigado.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/V - Conclusao.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/W - Relatorio.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/X - Termo de remessa.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Y - Of de remessa.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/atd/A - Capa.docx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/atd/A - Capa.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/atd/B - Formulario.docx" beforeDir="false" afterPath="$PROJECT_DIR$/templates/atd/B - Formulario.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,17 +50,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;Python.Run Corregerador.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/willi/PycharmProjects/Corregerador&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Python.Run Corregerador.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "<unknown>",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Biblioteca do Windows/Documentos/PycharmProjects/Corregerador",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\willi\PycharmProjects\Corregerador" />
@@ -86,7 +78,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.11 (Corregerador)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -104,7 +95,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+        <option value="bundled-python-sdk-a5bc9544c897-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.23654.177" />
       </set>
     </attachedChunks>
   </component>

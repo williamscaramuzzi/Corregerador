@@ -1,8 +1,17 @@
 import os
 import re
+import sys
 from typing import Dict
 from docxtpl import DocxTemplate
 
+def get_caminho_templates(caminho):
+    """ Retorna o caminho correto da pasta templates """
+    if getattr(sys, 'frozen', False):  # Se for um executável .exe
+        base = os.path.dirname(sys.executable)  # Diretório onde o .exe está rodando
+    else:
+        base = os.path.dirname(os.path.abspath(__file__))  # Caminho normal no Python
+
+    return str(os.path.join(base, caminho)) # Retorna o caminho correto para templates/ como uma string comum
 
 def criar_pasta_saida(num_portaria_completo: str) -> str:
     # Usando expressão regular para capturar os números iniciais do num_portaria_completo
@@ -11,8 +20,14 @@ def criar_pasta_saida(num_portaria_completo: str) -> str:
     if resultado:
         num = resultado.group(1)  # Retorna apenas os números capturados
 
-    # Caminho do arquivo main.py
-    caminho_principal = os.path.dirname(os.path.abspath(__file__))
+    def get_caminho_base():
+        """ Retorna o caminho correto da pasta base, dentro ou fora do PyInstaller """
+        if getattr(sys, 'frozen', False):  # Se for um executável .exe
+            return os.path.dirname(sys.executable)  # Diretório onde o .exe está
+        return os.path.dirname(os.path.abspath(__file__))  # Diretório do script Python
+
+    # Obtém o caminho base correto
+    caminho_principal = get_caminho_base()
 
     # Nome da nova pasta, num_portaria_completo[-4:] pega o ano 2024 que fica no final de /IPM/CORREG/PMMS/2024
     nome_pasta = "IPM Portaria n " + str(num) + " " + num_portaria_completo[-4:]
@@ -30,7 +45,11 @@ def criar_pasta_saida(num_portaria_completo: str) -> str:
 
 
 def processar_capa(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/A - Capa.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/A - Capa.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "uopm": obj["uopm"],
         "num_portaria": obj["num_portaria"],
@@ -51,7 +70,12 @@ def processar_capa(obj: Dict[str, str]) -> None:
 
 
 def processar_autuacao(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/B - Autuacao.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/B - Autuacao.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
+
     dados = {
         "num_portaria": obj["num_portaria"],
         "data_portaria": obj["data_portaria"],
@@ -81,7 +105,12 @@ def processar_autuacao(obj: Dict[str, str]) -> None:
 
 
 def processar_portaria_encarregado(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/C - Portaria do encarregado.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/C - Portaria do encarregado.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
+
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -110,7 +139,12 @@ def processar_portaria_encarregado(obj: Dict[str, str]) -> None:
 
 
 def processar_designacao(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/D - Designacao escrivao.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/D - Designacao escrivao.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
+
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -137,7 +171,11 @@ def processar_designacao(obj: Dict[str, str]) -> None:
 
 
 def processar_termo_compromisso(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/E - Termo de compromisso.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/E - Termo de compromisso.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -167,7 +205,11 @@ def processar_termo_compromisso(obj: Dict[str, str]) -> None:
 
 
 def processar_despacho(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/F - Despacho 001.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/F - Despacho 001.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "num_portaria": obj["num_portaria"],
         "data_portaria": obj["data_portaria"],
@@ -192,7 +234,11 @@ def processar_despacho(obj: Dict[str, str]) -> None:
 
 
 def processar_recebimento(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/G - Recebimento.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/G - Recebimento.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "grande_comando": obj["grande_comando"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -214,7 +260,11 @@ def processar_recebimento(obj: Dict[str, str]) -> None:
 
 
 def processar_oficio_001(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/G.1 - Of 001 informando designacao.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/G.1 - Of 001 informando designacao.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -242,7 +292,12 @@ def processar_oficio_001(obj: Dict[str, str]) -> None:
 
 
 def processar_oitiva_investigado(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/G.2 - Oitiva investigado.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/G.2 - Oitiva investigado.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
+
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -272,7 +327,11 @@ def processar_oitiva_investigado(obj: Dict[str, str]) -> None:
 
 
 def processar_conclusao(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/V - Conclusao.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/V - Conclusao.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -294,7 +353,11 @@ def processar_conclusao(obj: Dict[str, str]) -> None:
 
 
 def processar_relatorio(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/W - Relatorio.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/W - Relatorio.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -325,7 +388,11 @@ def processar_relatorio(obj: Dict[str, str]) -> None:
 
 
 def processar_termo_remessa(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/X - Termo de remessa.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/X - Termo de remessa.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "uopm_cidade": obj["uopm_cidade"],
         "uopm_extenso": obj["uopm_extenso"],
@@ -350,7 +417,11 @@ def processar_termo_remessa(obj: Dict[str, str]) -> None:
 
 
 def processar_oficio_remessa(obj: Dict[str, str]) -> None:
-    documento = DocxTemplate("templates/ipm/Y - Of de remessa.docx")
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/Y - Of de remessa.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
     dados = {
         "uopm": obj["uopm"],
         "grande_comando": obj["grande_comando"],
@@ -370,5 +441,39 @@ def processar_oficio_remessa(obj: Dict[str, str]) -> None:
     documento.render(dados)
     nome_da_pasta = criar_pasta_saida(obj["num_portaria"])
     caminho_saida = nome_da_pasta + r"\Y - Of de remessa.docx"
+    documento.save(caminho_saida)
+    return None
+
+def processar_solucao(obj: Dict[str, str]) -> None:
+    # Caminho correto para o template
+    caminho_template = get_caminho_templates("templates/ipm/Z - Solucao para o comandante.docx")
+
+    # Carregar o template
+    documento = DocxTemplate(caminho_template)
+    dados = {
+        "uopm": obj["uopm"],
+        "grande_comando": obj["grande_comando"],
+        "uopm_extenso": obj["uopm_extenso"],
+        "uopm_email": obj["uopm_email"],
+        "uopm_telefone": obj["uopm_telefone"],
+        "uopm_cidade": obj["uopm_cidade"],
+        "uopm_endereco": obj["uopm_endereco"],
+        "func_autinst": obj["func_autinst"],
+        "posto_autinst": obj["posto_autinst"],
+        "nome_autinst": obj["nome_autinst"],
+        "num_portaria": obj["num_portaria"],
+        "data_portaria": obj["data_portaria"],
+        "texto_finalidade": obj["texto_finalidade"],
+        "postograd_investigado": obj["postograd_investigado"],
+        "nome_investigado": obj["nome_investigado"],
+        "mat_investigado": obj["mat_investigado"],
+        "data_relatorio": obj["data_relatorio"],
+        "nome_encarregado": obj["nome_encarregado"],
+        "posto_encarregado": obj["posto_encarregado"],
+        "mat_encarregado": obj["mat_encarregado"]
+    }
+    documento.render(dados)
+    nome_da_pasta = criar_pasta_saida(obj["num_portaria"])
+    caminho_saida = nome_da_pasta + r"\Z - Solucao para o comandante.docx"
     documento.save(caminho_saida)
     return None

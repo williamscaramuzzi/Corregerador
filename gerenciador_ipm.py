@@ -4,6 +4,7 @@ import tkinter as tk
 from datetime import datetime, timedelta
 from tkinter import messagebox
 from typing import Dict
+import ctypes
 
 import manipulacoes_ipm
 import utilidades
@@ -14,14 +15,17 @@ locale.setlocale(locale.LC_TIME, 'portuguese_brazil')
 
 def main():
     window = tk.Tk()
-    min_width = int(window.winfo_screenwidth() * 0.9)
-    min_heigth = int(window.winfo_screenheight() * 0.5)
-    window.geometry("1480x540")
+    largura = int(window.winfo_screenwidth() * 0.9)
+    altura = int(window.winfo_screenheight() * 0.7)
+    x_pos = 5
+    y_pos = 5
+    window.geometry(f"{largura}x{altura}+{x_pos}+{y_pos}")
     window.title("Gerador de IPM")
-    window.minsize(min_width, min_heigth)
+    window.minsize(largura, altura)
 
     def button_executar_onclick():
-        messagebox.showinfo(title="Aviso!", message="Tem certeza que deseja gerar o IPM? conferiu os dados?")
+        if(not messagebox.askokcancel(title="Aviso!", message="Tem certeza que deseja gerar o IPM? conferiu os dados?")):
+            return
 
         # Pega a data de autuação, informa que é uma string no formato dd/mm/aaaa e cria um objeto Datetime
         data = datetime.strptime(data_autuacao_var.get(), "%d/%m/%Y")
@@ -44,7 +48,7 @@ def main():
             "nome_encarregado": nome_encarregado_var.get(), "posto_encarregado": posto_encarregado_var.get(),
             "mat_encarregado": mat_encarregado_var.get(), "postograd_investigado": postograd_investigado_var.get(),
             "nome_investigado": nome_investigado_var.get(), "mat_investigado": mat_investigado_var.get(),
-            "texto_finalidade": texto_finalidade_var.get(), "nome_escrivao": nome_escrivao_var.get(),
+            "texto_finalidade": textinput_texto_finalidade.get("1.0", tk.END), "nome_escrivao": nome_escrivao_var.get(),
             "postograd_escrivao": postograd_escrivao_var.get(), "mat_escrivao": mat_escrivao_var.get(),
             "data_autuacaoextenso": data_autuacaoextenso_var.get(), "data_autuacao": string_data_autuacao,
             "nome_autinst": nome_autinst_var.get(), "posto_autinst": posto_autinst_var.get(),
@@ -59,19 +63,27 @@ def main():
         # os asteriscos são pra espalhar todos os itens do dicionário, se chamam spread operator
         dados_gerais: Dict[str, str] = {**dados_unidade_dict, **dados_ipm_dict}
 
-        manipulacoes_ipm.processar_capa(dados_gerais)
-        manipulacoes_ipm.processar_autuacao(dados_gerais)
-        manipulacoes_ipm.processar_portaria_encarregado(dados_gerais)
-        manipulacoes_ipm.processar_designacao(dados_gerais)
-        manipulacoes_ipm.processar_termo_compromisso(dados_gerais)
-        manipulacoes_ipm.processar_despacho(dados_gerais)
-        manipulacoes_ipm.processar_recebimento(dados_gerais)
-        manipulacoes_ipm.processar_oficio_001(dados_gerais)
-        manipulacoes_ipm.processar_oitiva_investigado(dados_gerais)
-        manipulacoes_ipm.processar_conclusao(dados_gerais)
-        manipulacoes_ipm.processar_relatorio(dados_gerais)
-        manipulacoes_ipm.processar_termo_remessa(dados_gerais)
-        manipulacoes_ipm.processar_oficio_remessa(dados_gerais)
+
+        try:
+            manipulacoes_ipm.processar_capa(dados_gerais)
+            manipulacoes_ipm.processar_autuacao(dados_gerais)
+            manipulacoes_ipm.processar_portaria_encarregado(dados_gerais)
+            manipulacoes_ipm.processar_designacao(dados_gerais)
+            manipulacoes_ipm.processar_termo_compromisso(dados_gerais)
+            manipulacoes_ipm.processar_despacho(dados_gerais)
+            manipulacoes_ipm.processar_recebimento(dados_gerais)
+            manipulacoes_ipm.processar_oficio_001(dados_gerais)
+            manipulacoes_ipm.processar_oitiva_investigado(dados_gerais)
+            manipulacoes_ipm.processar_conclusao(dados_gerais)
+            manipulacoes_ipm.processar_relatorio(dados_gerais)
+            manipulacoes_ipm.processar_termo_remessa(dados_gerais)
+            manipulacoes_ipm.processar_oficio_remessa(dados_gerais)
+            manipulacoes_ipm.processar_solucao(dados_gerais)
+        except Exception as error:
+            messagebox.showerror(title="Erro", message=f"Erro ao criar IPM: \n{error}")
+        else:
+            nome_da_pasta_de_saida = manipulacoes_ipm.criar_pasta_saida(dados_gerais["num_portaria"])
+            messagebox.showinfo(icon=messagebox.WARNING, title="Sucesso", message=f"IPM Criado com sucesso! Confira a pasta {nome_da_pasta_de_saida}")
 
     # fim função button_executar_onclick
 
@@ -172,13 +184,30 @@ def main():
 
     def aplicar_mascara_data_portaria(event):
         texto = data_portaria_var.get()
-        # Adiciona "/" após o dia ou mês quando necessário e reposiciona o cursor
-        if len(texto) == 2 and texto[1] != "/":
-            data_portaria_var.set(texto + "/")
-            textinput_data_portaria.icursor(3)  # Coloca o cursor após o "/"
-        elif len(texto) == 5 and texto[4] != "/":
-            data_portaria_var.set(texto + "/")
-            textinput_data_portaria.icursor(6)  # Coloca o cursor após o segundo "/"
+
+        # Captura a posição atual do cursor
+        pos_cursor = textinput_data_portaria.index(tk.INSERT)
+
+        # Remove qualquer caractere que não seja número ou "/"
+        texto = "".join(c for c in texto if c.isdigit() or c == "/")
+
+        # Garante que a string não ultrapasse 10 caracteres
+        if len(texto) > 10:
+            texto = texto[:10]
+
+        novo_texto = ""
+        for i, char in enumerate(texto):
+            if i in [2, 5]:  # Posiciona automaticamente as barras "/"
+                if char != "/":
+                    novo_texto += "/"
+                    pos_cursor += 1  # Ajusta a posição do cursor
+            novo_texto += char
+
+        # Atualiza o campo
+        data_portaria_var.set(novo_texto)
+
+        # Reposiciona o cursor corretamente
+        textinput_data_portaria.icursor(pos_cursor)
 
     # fim aplicar_mascara_data_portaria
 
@@ -190,16 +219,38 @@ def main():
 
     # Linha 6 - Data autuação, Data autuação por extenso
     def aplicar_mascara_data_autuacao(event):
-        texto = data_portaria_var.get()
-        # Adiciona "/" após o dia ou mês quando necessário e reposiciona o cursor
-        if len(texto) == 2 and texto[1] != "/":
-            data_autuacao_var.set(texto + "/")
-            textinput_data_autuacao.icursor(3)  # Coloca o cursor após o "/"
-        elif len(texto) == 5 and texto[4] != "/":
-            data_autuacao_var.set(texto + "/")
-            textinput_data_autuacao.icursor(6)  # Coloca o cursor após o segundo "/"
+        texto = data_autuacao_var.get()
+
+        # Captura a posição atual do cursor
+        pos_cursor = textinput_data_autuacao.index(tk.INSERT)
+
+        # Remove qualquer caractere que não seja número ou "/"
+        texto = "".join(c for c in texto if c.isdigit() or c == "/")
+
+        # Garante que a string não ultrapasse 10 caracteres
+        if len(texto) > 10:
+            texto = texto[:10]
+
+        novo_texto = ""
+        for i, char in enumerate(texto):
+            if i in [2, 5]:  # Posiciona automaticamente as barras "/"
+                if char != "/":
+                    novo_texto += "/"
+                    pos_cursor += 1  # Ajusta a posição do cursor
+            novo_texto += char
+
+        # Atualiza o campo
+        data_autuacao_var.set(novo_texto)
+
+        # Reposiciona o cursor corretamente
+        textinput_data_autuacao.icursor(pos_cursor)
 
     # fim aplicar_mascara_data_autuacao
+
+    def atualiza_dataautuacao_extenso(event):
+        data_por_extenso = utilidades.get_data_extenso(data_autuacao_var.get())
+        data_autuacaoextenso_var.set(data_por_extenso)
+    # fim atualiza_dataautuacao_extenso
 
     label_data_autuacao = tk.Label(maingrid, text="Data de Autuação")
     label_data_autuacao.grid(row=6, column=0, sticky="e")
@@ -210,6 +261,7 @@ def main():
                                        validatecommand=comando_de_validacao_de_datas)
     textinput_data_autuacao.grid(row=6, column=1, sticky="w", padx=(0, 25))
     textinput_data_autuacao.bind("<KeyRelease>", aplicar_mascara_data_autuacao)
+    textinput_data_autuacao.bind("<FocusOut>", atualiza_dataautuacao_extenso)
 
     label_data_autuacaoextenso = tk.Label(maingrid, text="Data aut extenso, tudo minúsculo")
     label_data_autuacaoextenso.grid(row=6, column=2, sticky="e")
@@ -339,7 +391,6 @@ def main():
         maingrid.columnconfigure(col, weight=1)
     maingrid.rowconfigure(15, weight=1)  # Permitir expansão para a linha do Text
 
-    texto_finalidade_var = tk.StringVar()
     textinput_texto_finalidade = tk.Text(maingrid, wrap="word")
     textinput_texto_finalidade.grid(row=15, column=1, columnspan=4, sticky="ew", padx=10, pady=10)
     # Adicionar barra de rolagem
@@ -351,8 +402,31 @@ def main():
     button_executar = tk.Button(maingrid, text="Gerar IPM", command=button_executar_onclick)
     button_executar.grid(row=16, column=0, columnspan=2, sticky="nsew", padx=10, pady=10)
 
+    def button_sugerir_onclick():
+        # Povoando temporariamente Entrys para fins de teste
+        num_portaria_var.set("101")
+        nome_encarregado_var.set("William Scaramuzzi Teixeira")
+        posto_encarregado_var.set("Major QOPM")
+        mat_encarregado_var.set("101826021")
+        nome_escrivao_var.set("João da Silva")
+        postograd_escrivao_var.set("2º Sargento QOPM")
+        mat_escrivao_var.set("011111021")
+        nome_investigado_var.set("José da Silva")
+        postograd_investigado_var.set("Soldado QPPM")
+        mat_investigado_var.set("022222021")
+        nome_autinst_var.set("William Scaramuzzi Teixeira")
+        posto_autinst_var.set("Major QOPM")
+        func_autinst_var.set("Comandante da 14ª CIPM")
+        textinput_texto_finalidade.insert("1.0",
+                                          "Apurar possíveis irregularidades atribuídas ao investigado quando em abordagem a veículo no dia 05 de março de 2024")
+
+    # Linha 16 - botão sugerir dados para fins de teste
+    button_sugerir = tk.Button(maingrid, text="Sugerir dados", command=button_sugerir_onclick)
+    button_sugerir.grid(row=16, column=2, columnspan=2)
+
     # Chamando função que confere se o arquivo "dados_unidade.json" existe:
     dados_unidade_dict = confere_dados_unidade()
+
     if dados_unidade_dict is not None:
         # Povoa os entrys corretos com os dados da unidade
         uopm_var.set(dados_unidade_dict["uopm"])
@@ -363,23 +437,6 @@ def main():
         uopm_telefone_var.set(dados_unidade_dict["uopm_telefone"])
         uopm_email_var.set(dados_unidade_dict["uopm_email"])
     # fim do if
-
-    # Povoando temporariamente Entrys para fins de teste
-    num_portaria_var.set("101")
-    nome_encarregado_var.set("William Scaramuzzi Teixeira")
-    posto_encarregado_var.set("Major QOPM")
-    mat_encarregado_var.set("101826021")
-    nome_escrivao_var.set("Alex Jhonny da Silva")
-    postograd_escrivao_var.set("2º Tenente QOPM")
-    mat_escrivao_var.set("011111021")
-    nome_investigado_var.set("José da Silva")
-    postograd_investigado_var.set("Soldado QPPM")
-    mat_investigado_var.set("022222021")
-    nome_autinst_var.set("Rodrigo Alex Potrich")
-    posto_autinst_var.set("Coronel QOPM")
-    func_autinst_var.set("Comandante do CPA-4")
-    texto_finalidade_var.set(
-        "Apurar possíveis irregularidades atribuídas ao investigado quando em abordagem a veículo no dia 05 de março de 2024")
 
     maingrid.pack(side="top")
     window.mainloop()  # Fim do main()

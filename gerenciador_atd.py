@@ -13,15 +13,17 @@ locale.setlocale(locale.LC_TIME, 'portuguese_brazil')
 
 def main():
     window = tk.Tk()
-    min_width = int(window.winfo_screenwidth() * 0.9)
-    min_heigth = int(window.winfo_screenheight() * 0.5)
-    window.geometry("1480x540")
+    largura = int(window.winfo_screenwidth() * 0.9)
+    altura = int(window.winfo_screenheight() * 0.7)
+    x_pos = 5
+    y_pos = 5
+    window.geometry(f"{largura}x{altura}+{x_pos}+{y_pos}")
     window.title("Gerador de ATD")
-    window.minsize(min_width, min_heigth)
+    window.minsize(largura, altura)
 
     def button_executar_onclick():
-        messagebox.showinfo(title="Aviso!", message="Tem certeza que deseja gerar o ATD? conferiu os dados?")
-
+        if (not messagebox.askokcancel(title="Aviso!", message="Tem certeza que deseja gerar o IPM? conferiu os dados?")):
+            return
         # Pega a data da portaria, informa que é uma string no formato dd/mm/aaaa e cria um objeto Datetime
         data = datetime.strptime(data_portaria_var.get(), "%d/%m/%Y")
         # Adiciona dez dias como sugestão, pois ATD o prazo de defesa é cinco dias
@@ -51,7 +53,7 @@ def main():
             "nome_autinst": nome_autinst_var.get(),
             "posto_autinst": posto_autinst_var.get(),
             "func_autinst": func_autinst_var.get(),
-            "texto_finalidade": textinput_texto_finalidade.get()
+            "texto_finalidade": textinput_texto_finalidade.get("1.0", tk.END)
         }
 
         # Salva os dados do da unidade toda vez que executa, pra garantir
@@ -63,9 +65,18 @@ def main():
         # os asteriscos são pra espalhar todos os itens do dicionário, se chamam spread operator
         dados_gerais: Dict[str, str] = {**dados_unidade_dict, **dados_atd_dict}
 
-        manipulacoes_atd.processar_capa(dados_gerais)
-        manipulacoes_atd.processar_formulario(dados_gerais)
-        manipulacoes_atd.processar_relatorio(dados_gerais)
+        try:
+            manipulacoes_atd.processar_capa(dados_gerais)
+            manipulacoes_atd.processar_formulario(dados_gerais)
+            manipulacoes_atd.processar_relatorio(dados_gerais)
+            manipulacoes_atd.processar_oficio_remessa(dados_gerais)
+            manipulacoes_atd.processar_solucao(dados_gerais)
+        except Exception as error:
+            messagebox.showerror(title="Erro", message=f"Erro ao criar ATD: \n{error}")
+        else:
+            nome_da_pasta_de_saida = manipulacoes_atd.criar_pasta_saida(dados_gerais["num_portaria"])
+            messagebox.showinfo(icon=messagebox.WARNING, title="Sucesso", message=f"ATD Criado com sucesso! Confira a pasta {nome_da_pasta_de_saida}")
+
 
     # fim função button_executar_onclick
 
@@ -279,14 +290,14 @@ def main():
         nome_acusado_var.set("José da Silva")
         postograd_acusado_var.set("Soldado QPPM")
         mat_acusado_var.set("022222021")
-        nome_autinst_var.set("Rodrigo Alex Potrich")
-        posto_autinst_var.set("Coronel QOPM")
-        func_autinst_var.set("Comandante do CPA-4")
-        textinput_texto_finalidade.insert(
-            "Apurar conduta do investigado quando, no dia 05 de março de 2024, mostrou o dedo em um gesto obsceno para superior hierárquico, incorrendo no item 932 do RDPMMS: 'mostrar dedo pro superior'")
+        nome_autinst_var.set("William Scaramuzzi Teixeira")
+        posto_autinst_var.set("Major QOPM")
+        func_autinst_var.set("Comandante da 14ª CIPM")
+        textinput_texto_finalidade.insert("1.0",
+            "Apurar conduta do investigado quando, no dia 05 de março de 2025, se envolveu em discussão, incorrendo no item 932 do RDPMMS: 'desrespeitar superior'")
 
     # Linha 11 - botão sugerir dados para fins de teste
-    button_sugerir = tk.Button(maingrid, text="Sugerir dados (somente em desenvolvimento)", command=button_sugerir_onclick)
+    button_sugerir = tk.Button(maingrid, text="Sugerir dados", command=button_sugerir_onclick)
     button_sugerir.grid(row=10, column=1, columnspan=2)
 
     # Chamando função que confere se o arquivo "dados_unidade.json" existe:
